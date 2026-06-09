@@ -1,0 +1,198 @@
+/* CSS variables for consistent design system tokens */
+:root {
+    --bg-gradient: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(18, 16, 27) 90%);
+    --calc-bg: rgba(26, 26, 46, 0.65);
+    --calc-border: rgba(255, 255, 255, 0.08);
+    --display-bg: rgba(10, 10, 20, 0.85);
+    --display-border: rgba(0, 212, 255, 0.15);
+    --display-color: #00f0ff;
+    --text-primary: #ffffff;
+    --btn-bg: rgba(22, 33, 62, 0.5);
+    --btn-border: rgba(255, 255, 255, 0.04);
+    --btn-hover: rgba(15, 52, 96, 0.85);
+    --btn-active: rgba(0, 212, 255, 0.2);
+    --btn-operator-color: #00f0ff;
+    --btn-special-color: #ff6b6b;
+    --btn-equals-bg: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
+    --btn-equals-text: #0b0c10;
+    --shadow-color: rgba(0, 240, 255, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    overflow: hidden;
+}
+
+/* Glassmorphism Calculator Body */
+.calculator {
+    background: var(--calc-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--calc-border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 40px var(--shadow-color);
+    width: 340px;
+    transition: transform 0.3s ease;
+}
+
+.calculator:hover {
+    transform: translateY(-2px);
+}
+
+/* Neon Glow Display */
+.display {
+    background: var(--display-bg);
+    color: var(--display-color);
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: right;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--display-border);
+    margin-bottom: 24px;
+    min-height: 80px;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(0, 240, 255, 0.05);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+    letter-spacing: -0.5px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Stylized Buttons */
+button {
+    background: var(--btn-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--btn-border);
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: 
+        background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.1s ease,
+        border-color 0.2s,
+        box-shadow 0.2s;
+    user-select: none;
+}
+
+button:hover {
+    background: var(--btn-hover);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+button:active {
+    background: var(--btn-active);
+    transform: scale(0.95);
+    border-color: var(--display-color);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--display-color);
+    outline-offset: 2px;
+}
+
+.btn-operator {
+    color: var(--btn-operator-color);
+    font-weight: 600;
+}
+
+.btn-operator:hover {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.btn-special {
+    color: var(--btn-special-color);
+    font-weight: 600;
+}
+
+.btn-special:hover {
+    border-color: rgba(255, 107, 107, 0.4);
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.25);
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Linear-gradient vibrant Equals button */
+.btn-equals {
+    background: var(--btn-equals-bg);
+    color: var(--btn-equals-text);
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-equals:hover {
+    background: linear-gradient(135deg, #00ffff 0%, #3399ff 100%);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-equals:active {
+    transform: scale(0.95);
+}
+
+/* Mobile Responsiveness Media Queries */
+@media (max-width: 380px) {
+    .calculator {
+        width: 90vw;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--shadow-color);
+    }
+    
+    .display {
+        font-size: 1.8rem;
+        padding: 16px;
+        margin-bottom: 16px;
+        min-height: 70px;
+    }
+    
+    .buttons {
+        gap: 8px;
+    }
+    
+    button {
+        padding: 14px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+}
+
+/* Viewport height adjustments for short screens */
+@media (max-height: 600px) {
+    body {
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+}
+
